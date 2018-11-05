@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Quelldateien">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Headerdateien">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Quelldateien\relational_functors">
+      <UniqueIdentifier>{19c5bbaf-025e-45c2-848f-a25bde588aea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\relational_functors">
+      <UniqueIdentifier>{510d7c33-3377-4891-bb0e-7c8ceab767b7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="includes\primordialmachine\relational_functors\greater_than_or_equal_to_functor.hpp">
+      <Filter>Headerdateien\relational_functors</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\primordialmachine\relational_functors\greater_than_functor.hpp">
+      <Filter>Headerdateien\relational_functors</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\primordialmachine\relational_functors\equal_to_functor.hpp">
+      <Filter>Headerdateien\relational_functors</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\primordialmachine\relational_functors\not_equal_to_functor.hpp">
+      <Filter>Headerdateien\relational_functors</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\primordialmachine\relational_functors\lower_than_or_equal_to_functor.hpp">
+      <Filter>Headerdateien\relational_functors</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\primordialmachine\relational_functors\lower_than_functor.hpp">
+      <Filter>Headerdateien\relational_functors</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\primordialmachine\relational_functors\include.hpp">
+      <Filter>Headerdateien\relational_functors</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="package.props" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="sources\primordialmachine\relational_functors\include.cpp">
+      <Filter>Quelldateien\relational_functors</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

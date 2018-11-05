@@ -1,0 +1,108 @@
+\documentclass[oneside]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{xcolor}
+%
+\usepackage{lmodern}
+\usepackage{microtype}
+%
+\usepackage{graphicx}
+\usepackage[colorlinks]{hyperref}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{amsmath,amssymb,amsfonts}
+
+\input{common}
+
+\SetOrganization{Primordial Machine's}
+\SetLibraryName{Relational Functors Library}
+\SetLibraryVersion{v1.0}
+\SetLibraryRepository{https://github.com/primordialmachine/relational-functors}
+\SetAuthor{Michael Heilmann}
+\SetEmail{michaelheilmann@primordialmachine.com}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\section{Synopsis}
+C++ 17 library providing relational functors.
+The library is made available publicly on
+\href{\GetLibraryRepository}{Github}
+under the
+\href{\GetLibraryRepository/blob/master/LICENSE}{MIT License}.
+
+\section{Limitations and Restrictions}
+The library officially only supports Visual Studio 2017 and Windows 10.
+
+\section{Introductory example}
+\textit{\color{orange}This library does not provide any examples yet.}
+%Examples are located in the \href{\GetLibraryRepository/blob/master/examples}{examples} directory.
+
+\section{Building under Visual Studio 2017}
+\begin{enumerate}
+\item Open the solution \texttt{solution.sln} in Microsoft Visual Studio 2017.
+\item Batch build everything.
+\item The folder \texttt{packages} contains the distribution of the library i.e. include files and the
+      static libraries for
+  \begin{enumerate}
+    \item the platforms \texttt{Win32} and \texttt{x64} and
+    \item configurations \texttt{Release} and \texttt{Debug}.
+  \end{enumerate}
+\item Copy the contents of the \verb+packages+ folder into a directory. Let
+      \verb+[library home]+ be a placeholder denoting the path by which that folder
+      can be referenced from your project.
+\item Add
+  \begin{enumerate}
+    \item the include path
+\begin{verbatim}
+[library home]/primordialmachine/relational-functors/
+$(Platform.toLower())/$(Configuration.toLower())/includes
+\end{verbatim}
+	and
+    \item the library path
+\begin{verbatim}
+[library home]/primordialmachine/relational-functors/
+$(Platform.toLower())/$(Configuration.toLower())/libraries
+\end{verbatim}
+    to your project.
+\end{enumerate}
+\item Link your project with the library \verb+relational-functors.lib+.
+\item Add the include directive \verb+#include "primordialmachine/relational_functors/include.hpp"+ where appropriate.
+\item You can now use the functionality provided by the library.
+\end{enumerate}
+
+\section{Library Interface Documentation}
+
+\subsection{\texttt{namespace primordialmachine}}
+The namespace this library is adding its declarations/definitions to.
+The added namespace elements are documented below.
+
+\subsection{\textit{concept BinaryFunctor}}
+A \textit{BinaryFunctor} is a function object with three template arguments \verb+LEFT_OPERAND+,
+\verb+RIGHT_OPERAND+, and \verb+ENABLED+. Specializations of this type must provide a
+constant \verb+operator()+ with two parameters \verb+left_operand+ of type \verb+LEFT_OPERAND+
+(or a cv-qualified variant of that) and \verb+right_operand+ of type \verb+RIGHT_OPERAND+
+(or a cv-qualified variant of that). The return value of that operand shall represent the
+result of the operation \verb+left_operand OP right_operand+ where OP is the binary operation
+the \textit{BinaryFunctor} represents.\\
+
+\noindent{}The default type of \verb+ENABLED+ is \verb+void+. Specializations of this type may use
+the \verb+ENABLED+ argument to perform \textit{SFINAE}.
+
+\subsubsection{\texttt{struct equal\_to\_functor}}
+A \textit{BinaryFunctor} representing the binary expression \verb|left_operand == right_operand|.
+
+\subsubsection{\texttt{struct not\_equal\_to\_functor}}
+A \textit{BinaryFunctor} representing the binary expression \verb|left_operand != right_operand|.
+
+\subsubsection{\texttt{struct lower\_than\_functor}}
+A \textit{BinaryFunctor} representing the binary expression \verb|left_operand < right_operand|.
+
+\subsubsection{\texttt{struct lower\_than\_or\_equal\_to\_functor}}
+A \textit{BinaryFunctor} representing the binary expression \verb|left_operand <= right_operand|.
+
+\subsubsection{\texttt{struct greater\_than\_functor}}
+A \textit{BinaryFunctor} representing the binary expression \verb|left_operand > right_operand|.
+
+\subsubsection{\texttt{struct greater\_than\_or\_equal\_to\_functor}}
+A \textit{BinaryFunctor} representing the binary expression \verb|left_operand >= right_operand|.
+
+\end{document}
