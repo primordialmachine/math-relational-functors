@@ -43,6 +43,41 @@
 \def\@libraryName{\@latex@warning@no@line{No library name given}}
 \def\GetLibraryName{\@libraryName}
 
+% "(Get|Set)LibraryIncludesPath".
+% The includes directory path.
+% Example: "primordialmachine/arithmetic-functors/$(PlatformTarget.toLower())/$(Configuration.toLower())/includes"
+\def\SetLibraryIncludesDirectoryPath#1{\gdef\@libraryIncludesDirectoryPath{#1}}
+\def\@libraryIncludesDirectoryPath{\@latex@warning@no@line{No library includes directory path given}}
+\def\GetLibraryIncludesDirectoryPath{\@libraryIncludesDirectoryPath}
+
+% "(Get|Set)LibraryIncludeFile".
+% The include file name of the library.
+% Example: "include.hpp".
+\def\SetLibraryIncludeFileName#1{\gdef\@libraryIncludeFileName{#1}}
+\def\@libraryIncludeFileName{\@latex@warning@no@line{No library include file name given}}
+\def\GetLibraryIncludeFileName{\@libraryIncludeFileName}
+
+% "(Get|Set)LibraryIncludeDirectiveFilePath".
+% The library include directive file path.
+% Example: "primordialmachine/arithmetic_functors/include.hpp".
+\def\SetLibraryIncludeDirectiveFilePath#1{\gdef\@libraryIncludeDirectiveFilePath{#1}}
+\def\@libraryIncludeDirectiveFilePath{\@latex@warning@no@line{No library include directive file path}}
+\def\GetLibraryIncludeDirectiveFilePath{\@libraryIncludeDirectiveFilePath}
+
+% "(Get|Set)LibraryStaticLibrariesDirectoryPath".
+% The static libraries directory path.
+% Example: "primordialmachine/arithmetic-functors/$(PlatformTarget.toLower())/$(Configuration.toLower())/libraries".
+\def\SetLibraryStaticLibrariesDirectoryPath#1{\gdef\@libraryStaticLibrariesDirectoryPath{#1}}
+\def\@libraryStaticLibrariesDirectoryPath{\@latex@warning@no@line{No library static libraries directory path given}}
+\def\GetLibraryStaticLibrariesDirectoryPath{\@libraryStaticLibrariesDirectoryPath}
+
+% "(Get|Set)LibraryStaticLibraryFileName.
+% The static library file name of the library.
+% Example: "arithmetic-functors.hpp".
+\def\SetLibraryStaticLibraryFileName#1{\gdef\@libraryStaticLibraryFileName{#1}}
+\def\@libraryStaticLibraryFileName{\@latex@warning@no@line{No library static library file name given}}
+\def\GetLibraryStaticLibraryFileName{\@libraryStaticLibraryFileName}
+
 % "(Get|Set)LibraryVersion".
 % The version of the library.
 \def\SetLibraryVersion#1{\gdef\@libraryVersion{#1}}

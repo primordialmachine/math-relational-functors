@@ -1,0 +1,16 @@
+\section{\textit{concept UnaryFunctor}}
+A \textit{UnaryFunctor} is a \textit{Functor} with two template arguments
+\verb+OPERAND+,
+and
+\verb+ENABLED+.
+Specializations of this type must provide a constant \verb+operator()+ with one parameter
+\verb+operand+ of type \verb+OPERAND+ (or a cv-qualified variant of that). The    default
+type of \verb+ENABLED+ is \verb+void+. Specializations of this type may use           the
+\verb+ENABLED+ argument to perform \textit{SFINAE}. The operator shall be    qualified as
+\texttt{noexcept} and \texttt{constexpr} if possible.\newline
+
+\noindent{}A \textit{UnaryFunctor} represents the unary expression $\circ\texttt{operand}$
+where $\circ$ is a unary operator and        $\texttt{operand}$ is its operand.\newline
+
+\noindent{}The return value of the \verb+operator()+ shall represent the result of     the
+operation $\circ\texttt{operand}$.

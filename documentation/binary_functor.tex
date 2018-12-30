@@ -1,0 +1,18 @@
+\section{\textit{concept BinaryFunctor}}
+A \textit{BinaryFunctor} is a \textit{Functor} with three template arguments
+\verb+LEFT_OPERAND+,
+\verb+RIGHT_OPERAND+,
+and
+\verb+ENABLED+.
+Specializations of this type must provide a constant \verb+operator()+ with two parameters
+\verb+left_operand+  of type \verb+LEFT_OPERAND+  (or a cv-qualified variant of that)
+and
+\verb+right_operand+ of type \verb+RIGHT_OPERAND+ (or a cv-qualified variant of that)
+. The default type of \verb+ENABLED+ is \verb+void+. Specializations of this type may
+use     the \verb+ENABLED+ argument to perform \textit{SFINAE}. The operator shall be
+qualified as \texttt{noexcept} and \texttt{constexpr} if possible. \newline
+
+\noindent{}A \textit{BinaryFunctor} represents the binary expression $\texttt{left\_operand} \circ \texttt{right\_operand}$
+where $\circ$ is the binary operator    and $\texttt{left\_operand}$ and $\texttt{right\_operand}$ its operands. \newline
+
+\noindent{}The return value of the operator shall represent the result of the operation $\texttt{left\_operand} \circ \textit{right\_operand}$.
