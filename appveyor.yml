@@ -1,4 +1,37 @@
 # Copyright (c) 2018 Michael Heilmann. All rights reserved.
+
+# ORGANIZATION_NAME
+#   The name of the publishing organization.
+#   Example: 'primordialmachine'.
+# PACKAGE_NAME
+#   The name of the published package.
+#   Example: 'relational-functors'.
+# CONFIGURATION:
+#   The configuration.
+#   Example: 'release'.
+# PLATFORM:
+#   The platform.
+#   Example: 'x64'.
+# ARTIFACT_FILENAME
+#   The file name of the artifact.
+#   Example: 'primordialmachine-relational-functors-release-x64.zip'.
+# ARTIFACT_NAME
+#   The name of the artifact.
+#   Example: 'primordialmachine-relational-functors-release-x64'.
+#
+# GOOGLETESTADAPTER_FILENAME
+#   The filename of the archive of GoogleTestAdapter.
+#   Example: 'GoogleTestAdapter-0.14.0.vsix'.
+# GOOGLETESTADAPTER_URL
+#   The URL of the archive of GoogleTestAdapter.
+#   Example: 'https://github.com/csoltenborn/GoogleTestAdapter/releases/download/v0.14.0/GoogleTestAdapter-0.14.0.vsix'.
+# MIKTEX_FILENAME
+#   The filename of the archive of MikTex.
+#   Example: 'miktex-portable-2.9.6753.exe'.
+# MIKTEX_URL
+#   The URL of the archive of MikTex.
+#   Example: 'https://miktex.org/download/ctan/systems/win32/miktex/setup/windows-x86/miktex-portable-2.9.6753.exe'.
+
 clone_depth: 1
 
 image: Visual Studio 2017 # Build worker image (VM template)
@@ -16,6 +49,9 @@ configuration:
   - Release
 
 environment:
+  # Environment variables pertaining to the organization and package.
+  ORGANIZATION_NAME : "primordialmachine"
+  PACKAGE_NAME : "relational-functors"
   # Environment variables pertaining to GoogleTestAdapter.
   GOOGLETESTADAPTER_FILENAME : "GoogleTestAdapter-0.14.0.vsix"
   GOOGLETESTADAPTER_URL : "https://github.com/csoltenborn/GoogleTestAdapter/releases/download/v0.14.0/GoogleTestAdapter-0.14.0.vsix"
@@ -24,6 +60,14 @@ environment:
   MIKTEX_FILENAME : "miktex-portable-2.9.6753.exe"
   MIKTEX_URL : "https://miktex.org/download/ctan/systems/win32/miktex/setup/windows-x86/miktex-portable-2.9.6753.exe"
   MIKTEX_INSTALL_PATH : "C:\\miktex"
+
+cache:
+  # Cache archive and installation of GoogleTestAdapter.
+  - "%GOOGLETESTADAPTER_FILENAME% -> appveyor-develop.yml"
+  - "%GOOGLETESTADAPTER_INSTALL_PATH% -> appveyor-develop.yml"
+  # Cache archive and installation of MikTex.
+  - "%MIKTEX_FILENAME% -> appveyor-develop.yml"
+  - "%MIKTEX_INSTALL_PATH% -> appveyor-develop.yml"
 
 install:
   # Download and install GoogleTestAdapter.
@@ -41,6 +85,11 @@ install:
 
 before_build:
   - nuget restore         # Restore NuGet packages.
+  - ps: |
+      $env:ARTIFACT_NAME="$($env:ORGANIZATION_NAME.tolower())-$($env:PACKAGE_NAME.tolower())-$($env:configuration.tolower())-$($env:platform.tolower())"
+      $env:ARTIFACT_FILENAME="$($env:ARTIFACT_NAME).zip"
+      $env:DOCUMENTATION_ARTIFACT_NAME="$($env:ORGANIZATION_NAME.tolower())-$($env:PACKAGE_NAME.tolower())-$($env:configuration.tolower())-$($env:platform.tolower())"
+      $env:DOCUMENTATION_ARTIFACT_FILENAME="$($env:DOCUMENTATION_ARTIFACT_NAME).pdf"
 
 build_script:
   - ps: |
@@ -50,15 +99,30 @@ build_script:
       latexmk -pdf index.tex
       cd ..
 
+after_build:
+   - ps: |
+       cd packages
+       7z a $env:ARTIFACT_FILENAME $($env:ORGANIZATION_NAME.tolower())
+       Move-Item -Path ./$env:ARTIFACT_FILENAME -Destination ./../$env:ARTIFACT_FILENAME
+       cd ..
+   - ps: |
+       Move-Item -Path documentation/index.pdf -Destination ./$env:DOCUMENTATION_ARTIFACT_FILENAME
+
 test_script:
   - ps: |
       $logger="Appveyor"
       $configuration=$env:configuration
       $platform=$env:platform
       $testAdapterPath="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\GoogleTestAdapter-0.14.0"
-      $testPath="products\test\$platform\$configuration\relational-functors-test.exe"
+      $testPath="products\test\$platform\$configuration\$($env:PACKAGE_NAME.tolower())-test.exe"
       vstest.console /Logger:$logger /Platform:$platform /TestAdapterPath:$testAdapterPath /inIsolation $testPath
 
+artifacts:
+  - path: $(ARTIFACT_FILENAME)
+    name: $(ARTIFACT_NAME)
+  - path: $(DOCUMENTATION_ARTIFACT_FILENAME)
+    name: $(DOCUMENTATION_ARTIFACT_NAME)
+      
 matrix:
   fast_finish: true       # If one matrix entry fails, all entries fails.
 
