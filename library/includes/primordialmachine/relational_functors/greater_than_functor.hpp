@@ -25,9 +25,25 @@
 
 #pragma once
 
+#include <type_traits>
+
 namespace primordialmachine {
 
 template<typename LEFT_OPERAND, typename RIGHT_OPERAND, typename ENABLED = void>
 struct greater_than_functor;
+
+template<typename LEFT_OPERAND, typename RIGHT_OPERAND>
+struct greater_than_functor<
+  LEFT_OPERAND,
+  RIGHT_OPERAND,
+  std::enable_if_t<std::is_floating_point_v<LEFT_OPERAND> &&
+                   std::is_floating_point_v<RIGHT_OPERAND>>>
+{
+  auto operator()(LEFT_OPERAND x, RIGHT_OPERAND y) const
+    noexcept(noexcept(x > y))
+  {
+    return x > y;
+  }
+}; // struct greater_than_functor
 
 } // namespace primordialmachine
