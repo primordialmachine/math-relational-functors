@@ -39,6 +39,8 @@ struct greater_than_functor<
   std::enable_if_t<std::is_floating_point_v<LEFT_OPERAND> &&
                    std::is_floating_point_v<RIGHT_OPERAND>>>
 {
+  using left_operand_type = LEFT_OPERAND;
+  using right_operand_type = RIGHT_OPERAND;
   using result_type = bool;
   auto operator()(LEFT_OPERAND x, RIGHT_OPERAND y) const
     noexcept(noexcept(x > y))
