@@ -22,6 +22,7 @@
 # 3. This notice may not be removed or altered from any source distribution.
 #
 ###################################################################################################
+
 # ORGANIZATION_NAME
 #   The name of the publishing organization.
 #   Example: 'primordialmachine'.
@@ -49,10 +50,10 @@
 #   Example: 'https://github.com/csoltenborn/GoogleTestAdapter/releases/download/v0.14.0/GoogleTestAdapter-0.14.0.vsix'.
 # MIKTEX_FILENAME
 #   The filename of the archive of MikTex.
-#   Example: 'miktex-portable-2.9.6753.exe'.
+#   Example: 'miktex-portable-2.9.6942.exe'.
 # MIKTEX_URL
 #   The URL of the archive of MikTex.
-#   Example: 'https://miktex.org/download/ctan/systems/win32/miktex/setup/windows-x86/miktex-portable-2.9.6753.exe'.
+#   Example: 'https://miktex.org/download/ctan/systems/win32/miktex/setup/windows-x86/miktex-portable-2.9.6942.exe'.
 
 clone_depth: 1
 
@@ -80,8 +81,8 @@ environment:
   GOOGLETESTADAPTER_URL : "https://github.com/csoltenborn/GoogleTestAdapter/releases/download/v0.14.0/GoogleTestAdapter-0.14.0.vsix"
   GOOGLETESTADAPTER_INSTALL_PATH : "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\Common7\\IDE\\GoogleTestAdapter-0.14.0"
   # Environment variables pertaining to MikTex.
-  MIKTEX_FILENAME : "miktex-portable-2.9.6753.exe"
-  MIKTEX_URL : "https://miktex.org/download/ctan/systems/win32/miktex/setup/windows-x86/miktex-portable-2.9.6753.exe"
+  MIKTEX_FILENAME : "miktex-portable-2.9.6942.exe"
+  MIKTEX_URL : "https://miktex.org/download/ctan/systems/win32/miktex/setup/windows-x86/miktex-portable-2.9.6942.exe"
   MIKTEX_INSTALL_PATH : "C:\\miktex"
 
 cache:
