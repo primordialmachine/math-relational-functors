@@ -82,56 +82,72 @@ The library officially only supports Visual Studio 2017 and Windows 10.
 The namespace this library is adding its declarations/definitions to.
 The added namespace elements are documented below.
 
-\input{binary_functor}
+\input{functors}
 
-\section{\textit{concept BinaryFunctor}}
-
-\subsection{\texttt{struct equal\_to\_functor}}
-A \textit{BinaryFunctor} representing the binary expression
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\texttt{struct equal\_to\_functor}}
+A \textit{BinaryFunctorBase} representing the binary expression
 $\texttt{left\_operand} = \texttt{right\_operand}$
 denoting wether the values are equal.\newline
 
-\noindent{}This library provides specializations for \texttt{LEFT\_OPERAND} and \texttt{RIGHT\_OPERAND} being floating point types
-and $=$ being the C++ built-in equal to operator \texttt{==}.
+\noindent{}This library provides \textit{BinaryFunctor}         specializations for
+\texttt{LEFT\_OPERAND} and   \texttt{RIGHT\_OPERAND} being     floating point types
+which compute if \texttt{left\_operand} and \texttt{right\_operand} are not  equal.
+\texttt{result\_type} is \texttt{bool}.
 
-\subsection{\texttt{struct not\_equal\_to\_functor}}
-A \textit{BinaryFunctor} representing the binary expression
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\texttt{struct not\_equal\_to\_functor}}
+A \textit{BinaryFunctorBase} representing the binary expression
 $\texttt{left\_operand} \neq \texttt{right\_operand}$
 denoting wether the values are not equal.\newline
 
-\noindent{}This library provides specializations for \texttt{LEFT\_OPERAND} and \texttt{RIGHT\_OPERAND} being floating point types
-and $\neq$ being the C++ built-in not equal to operator \texttt{!=}.
+\noindent{}This library provides \textit{BinaryFunctor}         specializations for
+\texttt{LEFT\_OPERAND} and   \texttt{RIGHT\_OPERAND} being     floating point types
+which compute if \texttt{left\_operand} and \texttt{right\_operand} are not  equal.
+\texttt{result\_type} is \texttt{bool}.
 
-\subsection{\texttt{struct lower\_than\_functor}}
-A \textit{BinaryFunctor} representing the binary expression
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\texttt{struct lower\_than\_functor}}
+A \textit{BinaryFunctorBase} representing the binary expression
 $\texttt{left\_operand} < \texttt{right\_operand}$
 denoting wether the left value is smaller than the right value.\newline
 
-\noindent{}This library provides specializations for \texttt{LEFT\_OPERAND} and \texttt{RIGHT\_OPERAND} being floating point types
-and $<$ being the C++ built-in lower than operator \texttt{<}.
+\noindent{}This library provides \textit{BinaryFunctor}         specializations for
+\texttt{LEFT\_OPERAND} and   \texttt{RIGHT\_OPERAND} being     floating point types
+which compute if \texttt{left\_operand}      is lower than \texttt{right\_operand}.
+\texttt{result\_type} is \texttt{bool}.
 
-\subsection{\texttt{struct lower\_than\_or\_equal\_to\_functor}}
-A \textit{BinaryFunctor} representing the binary expression
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\texttt{struct lower\_than\_or\_equal\_to\_functor}}
+A \textit{BinaryFunctorBase} representing the binary expression
 $\texttt{left\_operand} \leq \texttt{right\_operand}$
 denoting wether the left value is lower than or equal to the right value.\newline
 
-\noindent{}This library provides specializations for \texttt{LEFT\_OPERAND} and \texttt{RIGHT\_OPERAND} being floating point types
-and $\leq$ being the C++ built-in lower than or equal to operator \texttt{<=}.
+\noindent{}This library provides \textit{BinaryFunctor}         specializations for
+\texttt{LEFT\_OPERAND} and   \texttt{RIGHT\_OPERAND} being     floating point types
+which compute if \texttt{left\_operand}                   is lower than or equal to
+\texttt{right\_operand}. \texttt{result\_type} is \texttt{bool}.
 
-\subsection{\texttt{struct greater\_than\_functor}}
-A \textit{BinaryFunctor} representing the binary expression
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\texttt{struct greater\_than\_functor}}
+A \textit{BinaryFunctorBase} representing the binary expression
 $\texttt{left\_operand} > \texttt{right\_operand}$
 denoting wether the left value is greater than the right value.\newline
 
-\noindent{}This library provides specializations for \texttt{LEFT\_OPERAND} and \texttt{RIGHT\_OPERAND} being floating point types
-and $>$ being the C++ built-in greater than operator \texttt{>}.
+\noindent{}This library provides \textit{BinaryFunctor}         specializations for
+\texttt{LEFT\_OPERAND} and   \texttt{RIGHT\_OPERAND} being     floating point types
+which compute if \texttt{left\_operand}    is greater than \texttt{right\_operand}.
+\texttt{result\_type} is \texttt{bool}.
 
-\subsection{\texttt{struct greater\_than\_or\_equal\_to\_functor}}
-A \textit{BinaryFunctor} representing the binary expression
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\texttt{struct greater\_than\_or\_equal\_to\_functor}}
+A \textit{BinaryFunctorBase} representing the binary expression
 $\texttt{left\_operand} \geq \texttt{right\_operand}$
 denoting wether the left value is greater than or equal to.\newline
 
-\noindent{}This library provides specializations for \texttt{LEFT\_OPERAND} and \texttt{RIGHT\_OPERAND} being floating point types
-and $\geq$ being the C++ built-in greater than or equal to operator \texttt{>=}.
+\noindent{}This library provides \textit{BinaryFunctor}         specializations for
+\texttt{LEFT\_OPERAND} and   \texttt{RIGHT\_OPERAND} being     floating point types
+which compute if \texttt{left\_operand}                 is greater than or equal to
+\texttt{right\_operand}. \texttt{result\_type} is \texttt{bool}.
 
 \end{document}
