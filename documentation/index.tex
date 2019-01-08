@@ -38,7 +38,7 @@
 \SetLibraryStaticLibrariesDirectoryPath{primordialmachine/relational-functors/\newline\$(PlatformTarget.toLower())/\$(Configuration.toLower())/libraries}
 \SetLibraryStaticLibraryFileName{relational-functors.lib}
 
-\SetLibraryVersion{v1.3}
+\SetLibraryVersion{v1.4}
 \SetLibraryRepository{https://github.com/primordialmachine/relational-functors}
 \SetAuthor{Michael Heilmann}
 \SetEmail{michaelheilmann@primordialmachine.com}
@@ -94,6 +94,26 @@ denoting wether the values are equal.\newline
 which compute if \texttt{left\_operand} and \texttt{right\_operand} are not  equal.
 \texttt{result\_type} is \texttt{bool}.
 
+\subsection{\texttt{equal\_to} (function)}
+This library provides a function to invoke the \texttt{equal\_to\_functor}.
+A possible implementation is given by\newline
+\texttt{
+template\textlangle typename A, typename B\textrangle\newline
+auto equal\_to(const A\& a, const B\& b)\newline
+-> decltype(equal\_to\_functor\textlangle A, B\textrangle()(a, b))\newline
+\{ return equal\_to\_functor\textlangle A, B\textrangle()(a, b); \}
+}
+
+\subsection{\texttt{operator==} (binary operator)}
+This library provides an equal to operator overload to invoke the \texttt{equal\_to\_functor}.
+A possible implementation is given by\newline
+\texttt{
+template\textlangle typename A, typename B\textrangle\newline
+auto operator==(const A\& a, const B\& b)\newline
+-> decltype(equal\_to(a, b))\newline
+\{ return equal\_to(a, b); \}
+}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{\texttt{struct not\_equal\_to\_functor}}
 A \textit{BinaryFunctorBase} representing the binary expression
@@ -104,6 +124,26 @@ denoting wether the values are not equal.\newline
 \texttt{LEFT\_OPERAND} and   \texttt{RIGHT\_OPERAND} being     floating point types
 which compute if \texttt{left\_operand} and \texttt{right\_operand} are not  equal.
 \texttt{result\_type} is \texttt{bool}.
+
+\subsection{\texttt{not\_equal\_to} (function)}
+This library provides a function to invoke the \texttt{not\_equal\_to\_functor}.
+A possible implementation is given by\newline
+\texttt{
+template\textlangle typename A, typename B\textrangle\newline
+auto not\_equal\_to(const A\& a, const B\& b)\newline
+-> decltype(not\_equal\_to\_functor\textlangle A, B\textrangle()(a, b))\newline
+\{ return not\_equal\_to\_functor\textlangle A, B\textrangle()(a, b); \}
+}
+
+\subsection{\texttt{operator!=} (binary operator)}
+This library provides a not equal to operator overload to invoke the \texttt{not\_equal\_to\_functor}.
+A possible implementation is given by\newline
+\texttt{
+template\textlangle typename A, typename B\textrangle\newline
+auto operator!=(const A\& a, const B\& b)\newline
+-> decltype(not\_equal\_to(a, b))\newline
+\{ return not\_equal\_to(a, b); \}
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{\texttt{struct lower\_than\_functor}}
@@ -116,6 +156,26 @@ denoting wether the left value is smaller than the right value.\newline
 which compute if \texttt{left\_operand}      is lower than \texttt{right\_operand}.
 \texttt{result\_type} is \texttt{bool}.
 
+\subsection{\texttt{lower\_than} (function)}
+This library provides a function to invoke the \texttt{lower\_than\_functor}.
+A possible implementation is given by\newline
+\texttt{
+template\textlangle typename A, typename B\textrangle\newline
+auto lower\_than(const A\& a, const B\& b)\newline
+-> decltype(lower\_than\_functor\textlangle A, B\textrangle()(a, b))\newline
+\{ return lower\_than\_functor\textlangle A, B\textrangle()(a, b); \}
+}
+
+\subsection{\texttt{operator<} (binary operator)}
+This library provides a lower than operator overload to invoke the \texttt{lower\_than\_functor}.
+A possible implementation is given by\newline
+\texttt{
+template\textlangle typename A, typename B\textrangle\newline
+auto operator<(const A\& a, const B\& b)\newline
+-> decltype(lower\_than(a, b))\newline
+\{ return lower\_than(a, b); \}
+}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{\texttt{struct lower\_than\_or\_equal\_to\_functor}}
 A \textit{BinaryFunctorBase} representing the binary expression
@@ -126,6 +186,26 @@ denoting wether the left value is lower than or equal to the right value.\newlin
 \texttt{LEFT\_OPERAND} and   \texttt{RIGHT\_OPERAND} being     floating point types
 which compute if \texttt{left\_operand}                   is lower than or equal to
 \texttt{right\_operand}. \texttt{result\_type} is \texttt{bool}.
+
+\subsection{\texttt{lower\_than\_or\_equal\_to} (function)}
+This library provides a function to invoke the \texttt{lower\_than\_or\_equal\_to\_functor}.
+A possible implementation is given by\newline
+\texttt{
+template\textlangle typename A, typename B\textrangle\newline
+auto lower\_than\_or\_equal\_to(const A\& a, const B\& b)\newline
+-> decltype(lower\_than\_or\_equal\_to\_functor\textlangle A, B\textrangle()(a, b))\newline
+\{ return lower\_than\_or\_equal\_to\_functor\textlangle A, B\textrangle()(a, b); \}
+}
+
+\subsection{\texttt{operator<=} (binary operator)}
+This library provides a lower than or equal to operator overload to invoke the \texttt{lower\_than\_or\_equal\_to\_functor}.
+A possible implementation is given by\newline
+\texttt{
+template\textlangle typename A, typename B\textrangle\newline
+auto operator<=(const A\& a, const B\& b)\newline
+-> decltype(lower\_than\_or\_equal\_to(a, b))\newline
+\{ return lower\_than\_or\_equal\_to(a, b); \}
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{\texttt{struct greater\_than\_functor}}
@@ -138,6 +218,26 @@ denoting wether the left value is greater than the right value.\newline
 which compute if \texttt{left\_operand}    is greater than \texttt{right\_operand}.
 \texttt{result\_type} is \texttt{bool}.
 
+\subsection{\texttt{greater\_than} (function)}
+This library provides a function to invoke the \texttt{greater\_than\_functor}.
+A possible implementation is given by\newline
+\texttt{
+template\textlangle typename A, typename B\textrangle\newline
+auto greater\_than(const A\& a, const B\& b)\newline
+-> decltype(greater\_than\_functor\textlangle A, B\textrangle()(a, b))\newline
+\{ return greater\_than\_functor\textlangle A, B\textrangle()(a, b); \}
+}
+
+\subsection{\texttt{operator>} (binary operator)}
+This library provides a greater than operator overload to invoke the \texttt{greater\_than\_functor}.
+A possible implementation is given by\newline
+\texttt{
+template\textlangle typename A, typename B\textrangle\newline
+auto operator>(const A\& a, const B\& b)\newline
+-> decltype(greater\_than(a, b))\newline
+\{ return greater\_than(a, b); \}
+}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{\texttt{struct greater\_than\_or\_equal\_to\_functor}}
 A \textit{BinaryFunctorBase} representing the binary expression
@@ -148,5 +248,25 @@ denoting wether the left value is greater than or equal to.\newline
 \texttt{LEFT\_OPERAND} and   \texttt{RIGHT\_OPERAND} being     floating point types
 which compute if \texttt{left\_operand}                 is greater than or equal to
 \texttt{right\_operand}. \texttt{result\_type} is \texttt{bool}.
+
+\subsection{\texttt{greater\_than\_or\_equal\_to} (function)}
+This library provides a function to invoke the \texttt{greater\_than\_or\_equal\_to\_functor}.
+A possible implementation is given by\newline
+\texttt{
+template\textlangle typename A, typename B\textrangle\newline
+auto greater\_than\_or\_equal\_to(const A\& a, const B\& b)\newline
+-> decltype(greater\_than\_or\_equal\_to\_functor\textlangle A, B\textrangle()(a, b))\newline
+\{ return greater\_than\_or\_equal\_to\_functor\textlangle A, B\textrangle()(a, b); \}
+}
+
+\subsection{\texttt{operator>=} (binary operator)}
+This library provides a greater than or equal to operator overload to invoke the \texttt{greater\_than\_or\_equal\_to\_functor}.
+A possible implementation is given by\newline
+\texttt{
+template\textlangle typename A, typename B\textrangle\newline
+auto operator>=(const A\& a, const B\& b)\newline
+-> decltype(greater\_than\_or\_equal\_to(a, b))\newline
+\{ return greater\_than\_or\_equal\_to(a, b); \}
+}
 
 \end{document}
