@@ -25,46 +25,42 @@
 
 #pragma once
 
-#include "primordialmachine/functors/include.hpp"
-
 namespace primordialmachine {
 
-template<typename LEFT_OPERAND, typename RIGHT_OPERAND, typename ENABLED = void>
-struct equal_to_functor;
-
-template<typename LEFT_OPERAND, typename RIGHT_OPERAND>
-auto
-equal_to(const LEFT_OPERAND& left_operand, const RIGHT_OPERAND& right_operand)
-  -> decltype(equal_to_functor<LEFT_OPERAND, RIGHT_OPERAND>()(left_operand,
-                                                              right_operand))
+/* Type denoting a relational lower than operation. */
+struct lower_than_operation
 {
-  return equal_to_functor<LEFT_OPERAND, RIGHT_OPERAND>()(left_operand,
-                                                         right_operand);
-}
+	static constexpr size_t number_of_operands = 2;
+}; // struct lower_than_operation
 
-// Default implementation for floating point types.
-template<typename LEFT_OPERAND, typename RIGHT_OPERAND>
-struct equal_to_functor<
-  LEFT_OPERAND,
-  RIGHT_OPERAND,
-  enable_if_t<is_floating_point_v<LEFT_OPERAND> &&
-              is_floating_point_v<RIGHT_OPERAND>>>
+/* Type denoting a relational lower than or equal to operation. */
+struct lower_than_or_equal_to_operation
 {
-  using left_operand_type = LEFT_OPERAND;
-  using right_operand_type = RIGHT_OPERAND;
-  using result_type = bool;
-  auto operator()(LEFT_OPERAND x, RIGHT_OPERAND y) const
-    noexcept(noexcept(x == y))
-  {
-    return x == y;
-  }
-}; // struct equal_to_functor
+	static constexpr size_t number_of_operands = 2;
+}; // struct lower_than_or_equal_to_operation
 
-template<typename A, typename B>
-auto
-operator==(const A& a, const B& b) -> decltype(equal_to(a, b))
+/* Type denoting a relational equal to operation. */
+struct equal_to_operation
 {
-  return equal_to(a, b);
-}
+	static constexpr size_t number_of_operands = 2;
+}; // struct equal_to_operation
+
+/* Type denoting a relational not equal to operation. */
+struct not_equal_to_operation
+{
+	static constexpr size_t number_of_operands = 2;
+}; // struct not_equal_to_operation
+
+/* Type denoting a greater than to operation. */
+struct greater_than_operation
+{
+	static constexpr size_t number_of_operands = 1;
+}; // struct greater_than_operation
+
+/* Type denoting a greater than or equal to operation. */
+struct greater_than_or_equal_to_operation
+{
+	static constexpr size_t number_of_operands = 1;
+}; // struct greater_than_or_equal_to_operation
 
 } // namespace primordialmachine

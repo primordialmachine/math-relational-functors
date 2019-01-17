@@ -38,6 +38,9 @@
     <ClInclude Include="includes\primordialmachine\relational_functors\include.hpp">
       <Filter>Headerdateien\relational_functors</Filter>
     </ClInclude>
+    <ClInclude Include="includes\primordialmachine\relational_functors\operations.hpp">
+      <Filter>Headerdateien\relational_functors</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="package.props" />
