@@ -24,4 +24,4 @@ function Download([String]$PackageName,[String]$Version){
   }
 }
 
-Download -PackageName 'functors' -Version '1.0'
+Download -PackageName 'functors' -Version '1.2'
