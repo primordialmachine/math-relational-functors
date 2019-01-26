@@ -38,7 +38,7 @@
 \SetLibraryStaticLibrariesDirectoryPath{primordialmachine/relational-functors/\newline\$(PlatformTarget.toLower())/\$(Configuration.toLower())/libraries}
 \SetLibraryStaticLibraryFileName{relational-functors.lib}
 
-\SetLibraryVersion{v1.5}
+\SetLibraryVersion{v1.6}
 \SetLibraryRepository{https://github.com/primordialmachine/relational-functors}
 \SetAuthor{Michael Heilmann}
 \SetEmail{michaelheilmann@primordialmachine.com}
@@ -84,15 +84,10 @@ The added namespace elements are documented below.
 \input{functors}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{\texttt{struct equal\_to\_functor}}
+\section{\texttt{equal\_to\_functor} (struct)}
 A \textit{BinaryFunctorBase} representing the binary expression
 $\texttt{left\_operand} = \texttt{right\_operand}$
 denoting wether the values are equal.\newline
-
-\noindent{}This library provides \textit{BinaryFunctor}         specializations for
-\texttt{LEFT\_OPERAND} and   \texttt{RIGHT\_OPERAND} being     floating point types
-which compute if \texttt{left\_operand} and \texttt{right\_operand} are not  equal.
-\texttt{result\_type} is \texttt{bool}.
 
 \subsection{\texttt{equal\_to} (function)}
 This library provides a function to invoke the \texttt{equal\_to\_functor}.
@@ -115,15 +110,10 @@ auto operator==(const A\& a, const B\& b)\newline
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{\texttt{struct not\_equal\_to\_functor}}
+\section{\texttt{not\_equal\_to\_functor} (struct)}
 A \textit{BinaryFunctorBase} representing the binary expression
 $\texttt{left\_operand} \neq \texttt{right\_operand}$
 denoting wether the values are not equal.\newline
-
-\noindent{}This library provides \textit{BinaryFunctor}         specializations for
-\texttt{LEFT\_OPERAND} and   \texttt{RIGHT\_OPERAND} being     floating point types
-which compute if \texttt{left\_operand} and \texttt{right\_operand} are not  equal.
-\texttt{result\_type} is \texttt{bool}.
 
 \subsection{\texttt{not\_equal\_to} (function)}
 This library provides a function to invoke the \texttt{not\_equal\_to\_functor}.
@@ -146,15 +136,10 @@ auto operator!=(const A\& a, const B\& b)\newline
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{\texttt{struct lower\_than\_functor}}
+\section{\texttt{lower\_than\_functor} (struct)}
 A \textit{BinaryFunctorBase} representing the binary expression
 $\texttt{left\_operand} < \texttt{right\_operand}$
 denoting wether the left value is smaller than the right value.\newline
-
-\noindent{}This library provides \textit{BinaryFunctor}         specializations for
-\texttt{LEFT\_OPERAND} and   \texttt{RIGHT\_OPERAND} being     floating point types
-which compute if \texttt{left\_operand}      is lower than \texttt{right\_operand}.
-\texttt{result\_type} is \texttt{bool}.
 
 \subsection{\texttt{lower\_than} (function)}
 This library provides a function to invoke the \texttt{lower\_than\_functor}.
@@ -177,15 +162,10 @@ auto operator<(const A\& a, const B\& b)\newline
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{\texttt{struct lower\_than\_or\_equal\_to\_functor}}
+\section{\texttt{lower\_than\_or\_equal\_to\_functor} (struct)}
 A \textit{BinaryFunctorBase} representing the binary expression
 $\texttt{left\_operand} \leq \texttt{right\_operand}$
 denoting wether the left value is lower than or equal to the right value.\newline
-
-\noindent{}This library provides \textit{BinaryFunctor}         specializations for
-\texttt{LEFT\_OPERAND} and   \texttt{RIGHT\_OPERAND} being     floating point types
-which compute if \texttt{left\_operand}                   is lower than or equal to
-\texttt{right\_operand}. \texttt{result\_type} is \texttt{bool}.
 
 \subsection{\texttt{lower\_than\_or\_equal\_to} (function)}
 This library provides a function to invoke the \texttt{lower\_than\_or\_equal\_to\_functor}.
@@ -208,15 +188,10 @@ auto operator<=(const A\& a, const B\& b)\newline
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{\texttt{struct greater\_than\_functor}}
+\section{\texttt{greater\_than\_functor} (struct)}
 A \textit{BinaryFunctorBase} representing the binary expression
 $\texttt{left\_operand} > \texttt{right\_operand}$
 denoting wether the left value is greater than the right value.\newline
-
-\noindent{}This library provides \textit{BinaryFunctor}         specializations for
-\texttt{LEFT\_OPERAND} and   \texttt{RIGHT\_OPERAND} being     floating point types
-which compute if \texttt{left\_operand}    is greater than \texttt{right\_operand}.
-\texttt{result\_type} is \texttt{bool}.
 
 \subsection{\texttt{greater\_than} (function)}
 This library provides a function to invoke the \texttt{greater\_than\_functor}.
@@ -239,15 +214,10 @@ auto operator>(const A\& a, const B\& b)\newline
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{\texttt{struct greater\_than\_or\_equal\_to\_functor}}
+\section{\texttt{greater\_than\_or\_equal\_to\_functor} (struct)}
 A \textit{BinaryFunctorBase} representing the binary expression
 $\texttt{left\_operand} \geq \texttt{right\_operand}$
 denoting wether the left value is greater than or equal to.\newline
-
-\noindent{}This library provides \textit{BinaryFunctor}         specializations for
-\texttt{LEFT\_OPERAND} and   \texttt{RIGHT\_OPERAND} being     floating point types
-which compute if \texttt{left\_operand}                 is greater than or equal to
-\texttt{right\_operand}. \texttt{result\_type} is \texttt{bool}.
 
 \subsection{\texttt{greater\_than\_or\_equal\_to} (function)}
 This library provides a function to invoke the \texttt{greater\_than\_or\_equal\_to\_functor}.
