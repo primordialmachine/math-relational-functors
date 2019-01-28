@@ -29,24 +29,16 @@
 
 namespace primordialmachine {
 
-template<typename LEFT_OPERAND, typename RIGHT_OPERAND, typename ENABLED = void>
+template<typename A, typename B, typename ENABLED = void>
 struct not_equal_to_functor;
 
-template<typename LEFT_OPERAND, typename RIGHT_OPERAND>
+template<typename A, typename B>
 auto
-not_equal_to(
-  const LEFT_OPERAND& left_operand,
-  const RIGHT_OPERAND&
-    right_operand) noexcept(noexcept(not_equal_to_functor<LEFT_OPERAND,
-                                                          RIGHT_OPERAND>()(
-  left_operand,
-  right_operand)))
-  -> decltype(
-    not_equal_to_functor<LEFT_OPERAND, RIGHT_OPERAND>()(left_operand,
-                                                        right_operand))
+not_equal_to(const A& a,
+             const B& b) noexcept(noexcept(not_equal_to_functor<A, B>()(a, b)))
+  -> decltype(not_equal_to_functor<A, B>()(a, b))
 {
-  return not_equal_to_functor<LEFT_OPERAND, RIGHT_OPERAND>()(left_operand,
-                                                             right_operand);
+  return not_equal_to_functor<A, B>()(a, b);
 }
 
 template<typename A, typename B>
