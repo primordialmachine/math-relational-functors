@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % Primordial Machine's Relational Functors Library
-% Copyright (C) 2017-2019 Michael Heilmann
+% Copyright (c) 2017-2019 Michael Heilmann
 %
 % This software is provided 'as-is', without any express or implied warranty.
 % In no event will the authors be held liable for any damages arising from the
@@ -38,7 +38,7 @@
 \SetLibraryStaticLibrariesDirectoryPath{primordialmachine/relational-functors/\newline\$(PlatformTarget.toLower())/\$(Configuration.toLower())/libraries}
 \SetLibraryStaticLibraryFileName{relational-functors.lib}
 
-\SetLibraryVersion{v1.6}
+\SetLibraryVersion{v1.8}
 \SetLibraryRepository{https://github.com/primordialmachine/relational-functors}
 \SetAuthor{Michael Heilmann}
 \SetEmail{michaelheilmann@primordialmachine.com}
@@ -81,162 +81,157 @@ The library officially only supports Visual Studio 2017 and Windows 10.
 The namespace this library is adding its declarations/definitions to.
 The added namespace elements are documented below.
 
-\input{functors}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{\texttt{equal\_to\_functor} (struct)}
-A \textit{BinaryFunctorBase} representing the binary expression
-$\texttt{left\_operand} = \texttt{right\_operand}$
-denoting wether the values are equal.\newline
+A \textit{FunctorBase} (see \cite{functors}) with two template parameters \texttt{A} and \texttt{B} followed by the \texttt{ENABLED} template parameter.
+Its specializations are \textit{Functors} representing the operation \texttt{a == b}.
 
 \subsection{\texttt{equal\_to} (function)}
 This library provides a function to invoke the \texttt{equal\_to\_functor}.
 A possible implementation is given by\newline
-\texttt{
-template\textlangle typename A, typename B\textrangle\newline
-auto equal\_to(const A\& a, const B\& b)\newline
+\texttt{template\textlangle typename A, typename B\textrangle\newline
+auto\newline
+equal\_to(const A\& a, const B\& b)\newline
+noexcept(noexcept(equal\_to\_functor\textlangle A, B\textrangle()(a, b)))\newline
 -> decltype(equal\_to\_functor\textlangle A, B\textrangle()(a, b))\newline
-\{ return equal\_to\_functor\textlangle A, B\textrangle()(a, b); \}
-}
+\{ return equal\_to\_functor\textlangle A, B\textrangle()(a, b); \}}
 
 \subsection{\texttt{operator==} (binary operator)}
 This library provides an equal to operator overload to invoke the \texttt{equal\_to\_functor}.
 A possible implementation is given by\newline
-\texttt{
-template\textlangle typename A, typename B\textrangle\newline
-auto operator==(const A\& a, const B\& b)\newline
+\texttt{template\textlangle typename A, typename B\textrangle\newline
+auto\newline
+operator==(const A\& a, const B\& b)\newline
+noexcept(noexcept(equal\_to(a, b)))\newline
 -> decltype(equal\_to(a, b))\newline
-\{ return equal\_to(a, b); \}
-}
+\{ return equal\_to(a, b); \}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{\texttt{not\_equal\_to\_functor} (struct)}
-A \textit{BinaryFunctorBase} representing the binary expression
-$\texttt{left\_operand} \neq \texttt{right\_operand}$
-denoting wether the values are not equal.\newline
+A \textit{FunctorBase} (see \cite{functors}) with two template parameters \texttt{A} and \texttt{B} followed by the \texttt{ENABLED} template parameter.
+Its specializations are \textit{Functor}s representing the operation \texttt{a != b}.
 
 \subsection{\texttt{not\_equal\_to} (function)}
 This library provides a function to invoke the \texttt{not\_equal\_to\_functor}.
 A possible implementation is given by\newline
-\texttt{
-template\textlangle typename A, typename B\textrangle\newline
-auto not\_equal\_to(const A\& a, const B\& b)\newline
+\texttt{template\textlangle typename A, typename B\textrangle\newline
+auto\newline
+not\_equal\_to(const A\& a, const B\& b)\newline
+noexcept(noexcept(not\_equal\_to\_functor\textlangle A, B\textrangle()(a, b)))\newline
 -> decltype(not\_equal\_to\_functor\textlangle A, B\textrangle()(a, b))\newline
-\{ return not\_equal\_to\_functor\textlangle A, B\textrangle()(a, b); \}
-}
+\{ return not\_equal\_to\_functor\textlangle A, B\textrangle()(a, b); \}}
 
 \subsection{\texttt{operator!=} (binary operator)}
 This library provides a not equal to operator overload to invoke the \texttt{not\_equal\_to\_functor}.
 A possible implementation is given by\newline
 \texttt{
 template\textlangle typename A, typename B\textrangle\newline
-auto operator!=(const A\& a, const B\& b)\newline
+auto\newline
+operator!=(const A\& a, const B\& b)\newline
+noexcept(noexcept(not\_equal\_to(a, b)))\newline
 -> decltype(not\_equal\_to(a, b))\newline
-\{ return not\_equal\_to(a, b); \}
-}
+\{ return not\_equal\_to(a, b); \}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{\texttt{lower\_than\_functor} (struct)}
-A \textit{BinaryFunctorBase} representing the binary expression
-$\texttt{left\_operand} < \texttt{right\_operand}$
-denoting wether the left value is smaller than the right value.\newline
+A \textit{FunctorBase} (see \cite{functors}) with two template parameters \texttt{A} and \texttt{B} followed by the \texttt{ENABLED} template parameter.
+Its specializations are \textit{Functors} representing the operation \texttt{a < b}.
 
 \subsection{\texttt{lower\_than} (function)}
 This library provides a function to invoke the \texttt{lower\_than\_functor}.
 A possible implementation is given by\newline
-\texttt{
-template\textlangle typename A, typename B\textrangle\newline
-auto lower\_than(const A\& a, const B\& b)\newline
+\texttt{template\textlangle typename A, typename B\textrangle\newline
+auto\newline
+lower\_than(const A\& a, const B\& b)\newline
+noexcept(noexcept(lower\_than\_functor\textlangle A, B\textrangle()(a, b)))\newline
 -> decltype(lower\_than\_functor\textlangle A, B\textrangle()(a, b))\newline
-\{ return lower\_than\_functor\textlangle A, B\textrangle()(a, b); \}
-}
+\{ return lower\_than\_functor\textlangle A, B\textrangle()(a, b); \}}
 
 \subsection{\texttt{operator<} (binary operator)}
 This library provides a lower than operator overload to invoke the \texttt{lower\_than\_functor}.
 A possible implementation is given by\newline
-\texttt{
-template\textlangle typename A, typename B\textrangle\newline
-auto operator<(const A\& a, const B\& b)\newline
+\texttt{template\textlangle typename A, typename B\textrangle\newline
+auto\newline
+operator<(const A\& a, const B\& b)\newline
+noexcept(noexcept(lower\_than(a, b)))\newline
 -> decltype(lower\_than(a, b))\newline
-\{ return lower\_than(a, b); \}
-}
+\{ return lower\_than(a, b); \}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{\texttt{lower\_than\_or\_equal\_to\_functor} (struct)}
-A \textit{BinaryFunctorBase} representing the binary expression
-$\texttt{left\_operand} \leq \texttt{right\_operand}$
-denoting wether the left value is lower than or equal to the right value.\newline
+A \textit{FunctorBase} (see \cite{functors}) with two template parameters \texttt{A} and \texttt{B} followed by the \texttt{ENABLED} template parameter.
+Its specializations are \textit{Functors} representing the operation \texttt{a <= b}.
 
 \subsection{\texttt{lower\_than\_or\_equal\_to} (function)}
 This library provides a function to invoke the \texttt{lower\_than\_or\_equal\_to\_functor}.
 A possible implementation is given by\newline
-\texttt{
-template\textlangle typename A, typename B\textrangle\newline
-auto lower\_than\_or\_equal\_to(const A\& a, const B\& b)\newline
+\texttt{template\textlangle typename A, typename B\textrangle\newline
+auto\newline
+lower\_than\_or\_equal\_to(const A\& a, const B\& b)\newline
+noexcept(noexcept(lower\_than\_or\_equal\_to\_functor\textlangle A, B\textrangle()(a, b)))\newline
 -> decltype(lower\_than\_or\_equal\_to\_functor\textlangle A, B\textrangle()(a, b))\newline
-\{ return lower\_than\_or\_equal\_to\_functor\textlangle A, B\textrangle()(a, b); \}
-}
+\{ return lower\_than\_or\_equal\_to\_functor\textlangle A, B\textrangle()(a, b); \}}
 
 \subsection{\texttt{operator<=} (binary operator)}
 This library provides a lower than or equal to operator overload to invoke the \texttt{lower\_than\_or\_equal\_to\_functor}.
 A possible implementation is given by\newline
-\texttt{
-template\textlangle typename A, typename B\textrangle\newline
-auto operator<=(const A\& a, const B\& b)\newline
+\texttt{template\textlangle typename A, typename B\textrangle\newline
+auto\newline
+operator<=(const A\& a, const B\& b)\newline
+noexcept(noexcept(lower\_than\_or\_equal\_to(a, b)))\newline
 -> decltype(lower\_than\_or\_equal\_to(a, b))\newline
-\{ return lower\_than\_or\_equal\_to(a, b); \}
-}
+\{ return lower\_than\_or\_equal\_to(a, b); \}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{\texttt{greater\_than\_functor} (struct)}
-A \textit{BinaryFunctorBase} representing the binary expression
-$\texttt{left\_operand} > \texttt{right\_operand}$
-denoting wether the left value is greater than the right value.\newline
+A \textit{FunctorBase} (see \cite{functors}) with two template parameters \texttt{A} and \texttt{B} followed by the \texttt{ENABLED} template parameter.
+Its specializations are \textit{Functors} representing the operation \texttt{a > b}.
 
 \subsection{\texttt{greater\_than} (function)}
 This library provides a function to invoke the \texttt{greater\_than\_functor}.
 A possible implementation is given by\newline
-\texttt{
-template\textlangle typename A, typename B\textrangle\newline
-auto greater\_than(const A\& a, const B\& b)\newline
+\texttt{template\textlangle typename A, typename B\textrangle\newline
+auto\newline
+greater\_than(const A\& a, const B\& b)\newline
+noexcept(noexcept(greater\_than\_functor\textlangle A, B\textrangle()(a, b)))\newline
 -> decltype(greater\_than\_functor\textlangle A, B\textrangle()(a, b))\newline
-\{ return greater\_than\_functor\textlangle A, B\textrangle()(a, b); \}
-}
+\{ return greater\_than\_functor\textlangle A, B\textrangle()(a, b); \}}
 
 \subsection{\texttt{operator>} (binary operator)}
 This library provides a greater than operator overload to invoke the \texttt{greater\_than\_functor}.
 A possible implementation is given by\newline
-\texttt{
-template\textlangle typename A, typename B\textrangle\newline
-auto operator>(const A\& a, const B\& b)\newline
+\texttt{template\textlangle typename A, typename B\textrangle\newline
+auto\newline
+operator>(const A\& a, const B\& b)\newline
+noexcept(noexcept(greater\_than(a, b)))\newline
 -> decltype(greater\_than(a, b))\newline
-\{ return greater\_than(a, b); \}
-}
+\{ return greater\_than(a, b); \}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{\texttt{greater\_than\_or\_equal\_to\_functor} (struct)}
-A \textit{BinaryFunctorBase} representing the binary expression
-$\texttt{left\_operand} \geq \texttt{right\_operand}$
-denoting wether the left value is greater than or equal to.\newline
+A \textit{FunctorBase} (see \cite{functors}) with two template parameters \texttt{A} and \texttt{B} followed by the \texttt{ENABLED} template parameter.
+Its specializations are \textit{Functors} representing the operation \texttt{a >= b}.
 
 \subsection{\texttt{greater\_than\_or\_equal\_to} (function)}
 This library provides a function to invoke the \texttt{greater\_than\_or\_equal\_to\_functor}.
 A possible implementation is given by\newline
-\texttt{
-template\textlangle typename A, typename B\textrangle\newline
-auto greater\_than\_or\_equal\_to(const A\& a, const B\& b)\newline
+\texttt{template\textlangle typename A, typename B\textrangle\newline
+auto\newline
+greater\_than\_or\_equal\_to(const A\& a, const B\& b)\newline
+noexcept(noexcept(greater\_than\_or\_equal\_to\_functor\textlangle A, B\textrangle()(a, b)))\newline
 -> decltype(greater\_than\_or\_equal\_to\_functor\textlangle A, B\textrangle()(a, b))\newline
-\{ return greater\_than\_or\_equal\_to\_functor\textlangle A, B\textrangle()(a, b); \}
-}
+\{ return greater\_than\_or\_equal\_to\_functor\textlangle A, B\textrangle()(a, b); \}}
 
 \subsection{\texttt{operator>=} (binary operator)}
 This library provides a greater than or equal to operator overload to invoke the \texttt{greater\_than\_or\_equal\_to\_functor}.
 A possible implementation is given by\newline
-\texttt{
-template\textlangle typename A, typename B\textrangle\newline
-auto operator>=(const A\& a, const B\& b)\newline
+\texttt{template\textlangle typename A, typename B\textrangle\newline
+auto\newline
+operator>=(const A\& a, const B\& b)\newline
+noexcept(noexcept(greater\_than\_or\_equal\_to(a, b)))\newline
 -> decltype(greater\_than\_or\_equal\_to(a, b))\newline
-\{ return greater\_than\_or\_equal\_to(a, b); \}
-}
+\{ return greater\_than\_or\_equal\_to(a, b); \}}
+
+\input{bibliography}
 
 \end{document}
