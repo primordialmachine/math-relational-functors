@@ -34,8 +34,13 @@ struct lower_than_or_equal_to_functor;
 
 template<typename LEFT_OPERAND, typename RIGHT_OPERAND>
 auto
-lower_than_or_equal_to(const LEFT_OPERAND& left_operand,
-                       const RIGHT_OPERAND& right_operand)
+lower_than_or_equal_to(
+  const LEFT_OPERAND& left_operand,
+  const RIGHT_OPERAND&
+    right_operand) noexcept(noexcept(lower_than_or_equal_to_functor<LEFT_OPERAND,
+                                                                    RIGHT_OPERAND>()(
+  left_operand,
+  right_operand)))
   -> decltype(lower_than_or_equal_to_functor<LEFT_OPERAND, RIGHT_OPERAND>()(
     left_operand,
     right_operand))
@@ -46,7 +51,9 @@ lower_than_or_equal_to(const LEFT_OPERAND& left_operand,
 
 template<typename A, typename B>
 auto
-operator<=(const A& a, const B& b) -> decltype(lower_than_or_equal_to(a, b))
+operator<=(const A& a,
+           const B& b) noexcept(noexcept(lower_than_or_equal_to(a, b)))
+  -> decltype(lower_than_or_equal_to(a, b))
 {
   return lower_than_or_equal_to(a, b);
 }

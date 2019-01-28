@@ -34,8 +34,13 @@ struct greater_than_functor;
 
 template<typename LEFT_OPERAND, typename RIGHT_OPERAND>
 auto
-greater_than(const LEFT_OPERAND& left_operand,
-             const RIGHT_OPERAND& right_operand)
+greater_than(
+  const LEFT_OPERAND& left_operand,
+  const RIGHT_OPERAND&
+    right_operand) noexcept(noexcept(greater_than_functor<LEFT_OPERAND,
+                                                          RIGHT_OPERAND>()(
+  left_operand,
+  right_operand)))
   -> decltype(
     greater_than_functor<LEFT_OPERAND, RIGHT_OPERAND>()(left_operand,
                                                         right_operand))
@@ -46,7 +51,8 @@ greater_than(const LEFT_OPERAND& left_operand,
 
 template<typename A, typename B>
 auto
-operator>(const A& a, const B& b) -> decltype(greater_than(a, b))
+operator>(const A& a, const B& b) noexcept(noexcept(greater_than(a, b)))
+  -> decltype(greater_than(a, b))
 {
   return greater_than(a, b);
 }

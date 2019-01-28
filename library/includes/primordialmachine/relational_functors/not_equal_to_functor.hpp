@@ -34,8 +34,13 @@ struct not_equal_to_functor;
 
 template<typename LEFT_OPERAND, typename RIGHT_OPERAND>
 auto
-not_equal_to(const LEFT_OPERAND& left_operand,
-             const RIGHT_OPERAND& right_operand)
+not_equal_to(
+  const LEFT_OPERAND& left_operand,
+  const RIGHT_OPERAND&
+    right_operand) noexcept(noexcept(not_equal_to_functor<LEFT_OPERAND,
+                                                          RIGHT_OPERAND>()(
+  left_operand,
+  right_operand)))
   -> decltype(
     not_equal_to_functor<LEFT_OPERAND, RIGHT_OPERAND>()(left_operand,
                                                         right_operand))
@@ -46,7 +51,8 @@ not_equal_to(const LEFT_OPERAND& left_operand,
 
 template<typename A, typename B>
 auto
-operator!=(const A& a, const B& b) -> decltype(not_equal_to(a, b))
+operator!=(const A& a, const B& b) noexcept(noexcept(not_equal_to(a, b)))
+  -> decltype(not_equal_to(a, b))
 {
   return not_equal_to(a, b);
 }
