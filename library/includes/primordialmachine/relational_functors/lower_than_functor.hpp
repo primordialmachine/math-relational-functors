@@ -50,10 +50,8 @@ operator<(const A& a, const B& b) -> decltype(lower_than(a, b))
 }
 
 template<typename T, typename ENABLED = void>
-struct has_lower_than_functor
-{
-  static constexpr bool value = false;
-}; // struct has_lower_than_functor
+struct has_lower_than_functor : public false_type
+{}; // struct has_lower_than_functor
 
 template<typename A, typename B>
 constexpr bool has_lower_than_functor_v =
@@ -61,11 +59,9 @@ constexpr bool has_lower_than_functor_v =
     lower_than_functor<A, B>>::value;
 
 template<typename A, typename B>
-struct has_lower_than_functor<
-  lower_than_functor<A, B>,
-  decltype(typeid(lower_than_functor<A, B>), void())>
-{
-  static constexpr bool value = true;
-}; // struct has_lower_than_functor
+struct has_lower_than_functor<lower_than_functor<A, B>,
+                              decltype(typeid(lower_than_functor<A, B>),
+                                       void())> : public true_type
+{}; // struct has_lower_than_functor
 
 } // namespace primordialmachine

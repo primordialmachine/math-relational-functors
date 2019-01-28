@@ -50,10 +50,8 @@ operator==(const A& a, const B& b) -> decltype(equal_to(a, b))
 }
 
 template<typename T, typename ENABLED = void>
-struct has_equal_to_functor
-{
-  static constexpr bool value = false;
-}; // struct has_equal_to_functor
+struct has_equal_to_functor : public false_type
+{}; // struct has_equal_to_functor
 
 template<typename A, typename B>
 constexpr bool has_equal_to_functor_v =
@@ -62,8 +60,7 @@ constexpr bool has_equal_to_functor_v =
 template<typename A, typename B>
 struct has_equal_to_functor<equal_to_functor<A, B>,
                             decltype(typeid(equal_to_functor<A, B>), void())>
-{
-  static constexpr bool value = true;
-}; // struct has_equal_to_functor
+  : public true_type
+{}; // struct has_equal_to_functor
 
 } // namespace primordialmachine
