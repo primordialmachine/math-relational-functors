@@ -1,0 +1,18 @@
+"CanonicalOrganizationName" : "primordialmachine",
+"OrganizationName" : "Primordial Machine",
+
+"CanonicalPackageName" : "relational-functors",
+"PackageName" : "Relational Functors",
+
+"AuthorName" : "Michael Heilmann",
+"AuthorEmail" : "michaelheilmann@primordialmachine.com",
+"CopyrightFrom" : "2017",
+"CopyrightTo" : "2019",
+
+"CanonicalPackageTypeName": "library",
+"PackageTypeName" : "Library",
+"PackageVersion" : "1.9",
+
+"RepositoryUrl" : "https://github.com/primordialmachine/relational-functors",
+"Open" : "{",
+"Close" : "}"
