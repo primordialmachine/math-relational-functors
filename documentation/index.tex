@@ -26,9 +26,7 @@
 \documentclass[oneside]{book}
 
 \input{common}
-
-\SetOrganization{Primordial Machine's}
-\SetLibraryName{Relational Functors Library}
+\input{meta}
 
 \SetLibraryIncludeFileName{include.hpp}
 \SetLibraryIncludesDirectoryPath{primordialmachine/relational-functors/\newline\$(PlatformTarget.toLower())/\$(Configuration.toLower())/includes}
@@ -37,11 +35,6 @@
 
 \SetLibraryStaticLibrariesDirectoryPath{primordialmachine/relational-functors/\newline\$(PlatformTarget.toLower())/\$(Configuration.toLower())/libraries}
 \SetLibraryStaticLibraryFileName{relational-functors.lib}
-
-\SetLibraryVersion{v1.8}
-\SetLibraryRepository{https://github.com/primordialmachine/relational-functors}
-\SetAuthor{Michael Heilmann}
-\SetEmail{michaelheilmann@primordialmachine.com}
 
 \SetDocumentType{User Manual}
 
